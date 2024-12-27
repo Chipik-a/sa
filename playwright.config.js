@@ -1,6 +1,18 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 const {resolve} = require("node:path");
+const globalSetup = require("./global-setup");
+
+
+
+module.exports = defineConfig({
+  globalSetup: require.resolve('./global-setup'),
+  use: {
+    baseURL: 'https://lxafitclub.passion.io', // Укажите базовый URL
+    storageState: 'state.json', // Использование сохраненного состояния
+    browserName: 'chromium', // Настройка браузера
+  },
+})
 
 /**
  * Read environment variables from file.
@@ -31,6 +43,8 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
+
+
 
   /* Configure projects for major browsers */
   // projects: [

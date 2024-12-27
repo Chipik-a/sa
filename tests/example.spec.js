@@ -1,22 +1,15 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const {HomePage} = require("../pages/homePage");
-const {LoginPage} = require("../pages/loginPage");
-const {adminUser} = require("../data/userData");
+// const {LoginPage} = require("../pages/loginPage");
+// const {adminUser} = require("../data/userData");
 
 test('has title', async ({ page }) => {
     const homePage = new HomePage(page);
-    const loginPage = new LoginPage(page);
+    await page.goto('/app/products');
+    await expect(page).toHaveURL('https://lxafitclub.passion.io/app/products')
 
-    await page.goto('/')
-    await homePage.cookieButton.click();
-    await homePage.loginButton.click();
-    await loginPage.login(adminUser);
-
-
-    await page.waitForURL('https://lxafitclub.passion.io/app/products')
-
-    await expect(page.url()).toBe('https://lxafitclub.passion.io/app/products')
+   // await expect(page.url()).toBe('https://lxafitclub.passion.io/app/products')
 
 });
 
