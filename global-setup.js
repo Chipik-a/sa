@@ -14,7 +14,6 @@ async function globalSetup() {
     await loginPage.login(adminUser);
     await page.waitForURL('https://lxafitclub.passion.io/app/products')
 
-
     //сохранение состояния авторизации
     await context.storageState({ path: 'state.json'})
 
